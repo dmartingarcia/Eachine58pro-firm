@@ -1,6 +1,6 @@
 #include <Arduino.h>
-#define LED_A PA2
-#define LED_B PB9
+#define LED_A PB9
+#define LED_B PA2
 
 namespace Led{
 

@@ -35,15 +35,17 @@ namespace Display {
     display.invertDisplay(false);
   }
 
-  void show_rssi_values(uint8_t rssi_a, uint8_t rssi_b){
+  void show_rssi_values(uint8_t rssi_a, uint8_t rssi_b, uint8_t selected){
     display.clearDisplay();
     display.setCursor(0, 0);
     display.setTextSize(2);
     display.setTextColor(WHITE);
-    display.print("RSSI_A: ");
+    display.print("RSSI_A:");
     display.println(rssi_a);    
-    display.print("RSSI_B: ");
+    display.print("RSSI_B:");
     display.println(rssi_b);
+    display.print("SELECTED:");
+    display.println(selected);    
     display.display();
   }
 }

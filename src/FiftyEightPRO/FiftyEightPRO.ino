@@ -3,6 +3,7 @@
 #include "display.h"
 #include "led.h"
 #include "receiver.h"
+#include "receiver_manager.h"
 
 void setup() {
   Display::init();
@@ -12,8 +13,6 @@ void setup() {
 }
 
 void loop() {
-  uint8_t rssi_a = Receiver::getRssi(0);
-  uint8_t rssi_b = Receiver::getRssi(1);
-  Display::show_rssi_values(rssi_a, rssi_b);
+  ReceiverManager::select();
   delay(200);
 }

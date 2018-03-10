@@ -32,18 +32,20 @@ namespace Receiver {
   }
   
   uint8_t getRssi(int selector){
-    uint16 rssi = 0;
+    uint16_t rssi = 0;
     if(selector == RECEIVER_ID_A){
        rssi = analogRead(RSSI_A);
     }else{
       rssi = analogRead(RSSI_B);
     }
 
-    rssi = map(rssi,
-               RSSI_MIN_VAL,
-               RSSI_MAX_VAL,
-               0, 
-               100);
-    return  constrain(rssi,0,100);
+    return constrain(
+                     map(rssi,
+                         RSSI_MIN_VAL,
+                         RSSI_MAX_VAL,
+                         0, 
+                         100),
+                     0,100);
   }
 }
+ 
