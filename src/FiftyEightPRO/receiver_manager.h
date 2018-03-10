@@ -1,3 +1,3 @@
 namespace ReceiverManager {
-  void select();
+  void select(uint16_t frec);
 }

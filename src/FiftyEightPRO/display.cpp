@@ -35,7 +35,7 @@ namespace Display {
     display.invertDisplay(false);
   }
 
-  void show_rssi_values(uint8_t rssi_a, uint8_t rssi_b, uint8_t selected){
+  void show_rssi_values(uint8_t rssi_a, uint8_t rssi_b, uint8_t selected, uint16_t frec_set){
     display.clearDisplay();
     display.setCursor(0, 0);
     display.setTextSize(2);
@@ -45,7 +45,9 @@ namespace Display {
     display.print("RSSI_B:");
     display.println(rssi_b);
     display.print("SELECTED:");
-    display.println(selected);    
+    display.println(selected);
+    display.print("Frec:");
+    display.println(frec_set);    
     display.display();
   }
 }

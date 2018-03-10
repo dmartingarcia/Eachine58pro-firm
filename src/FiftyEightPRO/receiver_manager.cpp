@@ -4,7 +4,7 @@
 #include "led.h"
 
 namespace ReceiverManager {
-  void select(){
+  void select(uint16_t frec){
     uint8_t rssi_a = Receiver::getRssi(0);
     uint8_t rssi_b = Receiver::getRssi(1);
     uint8_t selected = 0;
@@ -16,6 +16,6 @@ namespace ReceiverManager {
       Receiver::setActiveReceiver(0);
     }
       
-    Display::show_rssi_values(rssi_a, rssi_b, selected);
+    Display::show_rssi_values(rssi_a, rssi_b, selected, frec);
   }
 }

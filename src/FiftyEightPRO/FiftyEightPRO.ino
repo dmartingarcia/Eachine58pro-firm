@@ -13,6 +13,7 @@ void setup() {
 }
 
 void loop() {
-  ReceiverManager::select();
-  delay(200);
+  Receiver::setFreq(5771);
+  ReceiverManager::select(5771);
+  delay(2000);
 }
