@@ -1,38 +1,40 @@
 #include <Arduino.h>
+#define LED_A PA2
+#define LED_B PB9
 
 namespace Led{
 
   void on_a(){
-    digitalWrite(PA2, LOW);
+    digitalWrite(LED_A, LOW);
   }
 
   void on_b(){
-    digitalWrite(PB9, LOW);
+    digitalWrite(LED_B, LOW);
   }
 
   void off_a(){
-    digitalWrite(PA2, HIGH);
+    digitalWrite(LED_A, HIGH);
   }
 
   void off_b(){
-    digitalWrite(PB9, HIGH);
+    digitalWrite(LED_B, HIGH);
   }
 
   void init(){
-    pinMode(PA2, OUTPUT);
-    pinMode(PB9, OUTPUT);
+    pinMode(LED_A, OUTPUT);
+    pinMode(LED_B, OUTPUT);
     Led::off_a();
     Led::off_b();
   }
   
   void test(){
     Led::on_a();
-    delay(1000);
+    delay(500);
     Led::off_a();
-    delay(1000);
+    delay(500);
     Led::on_b();
-    delay(1000);
+    delay(500);
     Led::off_b();
-    delay(1000);
+    delay(500);
   }
 }
