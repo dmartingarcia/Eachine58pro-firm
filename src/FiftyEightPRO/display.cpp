@@ -10,8 +10,9 @@ namespace Display {
     display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
     display.clearDisplay();
   }
-
+ 
   void show_splashscreen() {
+    display.clearDisplay();
     display.setCursor(0, 1);
     display.setTextSize(3);
     display.setTextColor(BLACK, WHITE); // 'inverted' text
@@ -20,11 +21,7 @@ namespace Display {
     display.setTextColor(WHITE);
     display.println(" basestylo");
     display.display();
-    delay(2000);
-    display.invertDisplay(true);
     delay(500);
-    display.invertDisplay(false);
-    delay(200);
     display.invertDisplay(true);
     delay(200);
     display.invertDisplay(false);
@@ -32,6 +29,22 @@ namespace Display {
     display.invertDisplay(true);
     delay(100);
     display.invertDisplay(false);
+    delay(50);
+    display.invertDisplay(true);
+    delay(50);
+    display.invertDisplay(false);
+  }
+
+  void show_rssi_values(uint8_t rssi_a, uint8_t rssi_b){
+    display.clearDisplay();
+    display.setCursor(0, 0);
+    display.setTextSize(2);
+    display.setTextColor(WHITE);
+    display.print("RSSI_A: ");
+    display.println(rssi_a);    
+    display.print("RSSI_B: ");
+    display.println(rssi_b);
+    display.display();
   }
 }
 
