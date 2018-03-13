@@ -10,6 +10,10 @@ namespace Buzzer {
     tone(PIN_BUZZER, 800, 30);
   }
 
+  void async_tone(int frec, int millis){ 
+    tone(PIN_BUZZER, frec, millis);
+  }
+
   void tone(int frec, int millis){ 
     tone(PIN_BUZZER, frec, millis);
     delay(millis);

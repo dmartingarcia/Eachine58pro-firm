@@ -1,2 +1,3 @@
 namespace Button {
+  void init();
 }

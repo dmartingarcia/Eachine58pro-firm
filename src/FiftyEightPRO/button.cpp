@@ -8,5 +8,9 @@ short button_pushed = 0;
 
 
 namespace Button {
-  
+  void init(){
+    pinMode(BUTTON_UP, INPUT);
+    pinMode(BUTTON_MODE, INPUT);
+    pinMode(BUTTON_DOWN, INPUT);
+  }
 }
