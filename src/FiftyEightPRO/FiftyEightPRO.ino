@@ -108,9 +108,9 @@ void scan_loop() {
     Receiver::setFreq(Channel::getFrequencyByIndex(i));
     char value = max(Receiver::getRssi(0), Receiver::getRssi(1));
     value = max(value, max(Receiver::getRssi(0), Receiver::getRssi(1)));
-    //value = max(value, max(Receiver::getRssi(0), Receiver::getRssi(1)));
-    //value = max(value, max(Receiver::getRssi(0), Receiver::getRssi(1)));
-    //value = max(value, max(Receiver::getRssi(0), Receiver::getRssi(1)));
+    value = max(value, max(Receiver::getRssi(0), Receiver::getRssi(1)));
+    value = max(value, max(Receiver::getRssi(0), Receiver::getRssi(1)));
+    value = max(value, max(Receiver::getRssi(0), Receiver::getRssi(1)));
     
     value = map(value*value,0,10000,0,100);
     
