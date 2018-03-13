@@ -29,12 +29,11 @@ namespace Led{
   
   void test(){
     Led::on_a();
-    delay(500);
+    delay(333);
     Led::off_a();
-    delay(500);
+    delay(333);
     Led::on_b();
-    delay(500);
+    delay(333);
     Led::off_b();
-    delay(500);
   }
 }

@@ -1,5 +1,7 @@
 namespace Display {
   void init();
   void show_splashscreen();
-  void show_rssi_values(uint8_t rssi_a, uint8_t rssi_b, uint8_t selected, uint16_t frec_set);
+  void diversity_screen(uint8_t rssi_a, uint8_t rssi_b, char selected_channel[2], uint16_t freq, boolean manual);
+  void scan_screen(uint8_t rssi_values[40]);
+  void clear();
 }

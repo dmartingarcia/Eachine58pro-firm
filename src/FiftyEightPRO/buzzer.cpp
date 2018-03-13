@@ -7,6 +7,20 @@ namespace Buzzer {
   }
   
   void beep(){
-    tone(PIN_BUZZER, 2000, 100);
+    tone(PIN_BUZZER, 800, 30);
+  }
+
+  void tone(int frec, int millis){ 
+    tone(PIN_BUZZER, frec, millis);
+    delay(millis);
+  }
+
+  void test(){
+    Buzzer::tone(349*3, 150);
+    Buzzer::tone(349*3, 150);
+    Buzzer::tone(440*3, 200);
+    Buzzer::tone(523*3, 250);
+    Buzzer::tone(440*3, 200);
+    Buzzer::tone(523*3, 350);
   }
 }

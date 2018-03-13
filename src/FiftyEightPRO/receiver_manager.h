@@ -1,3 +1,0 @@
-namespace ReceiverManager {
-  void select();
-}
