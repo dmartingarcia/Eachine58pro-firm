@@ -65,7 +65,7 @@ void setup() {
 }
 
 void loop(){
-  if((lastButtonHandling + 1000) < millis()){   
+  if((lastButtonHandling + 2000) < millis()){   
     handleButtonTimming();
     lastButtonHandling = millis();
   }
@@ -160,7 +160,12 @@ void diversity_loop(){
       channel--;
     }else{
       channel++;
-    }  
+    }
+  }
+
+  frequency = Channel::getFrequencyByIndex(channel);
+  if(!is_tunned){
+    Receiver::setFreq(frequency);
   }
   
   if(channel == 40){
@@ -168,10 +173,7 @@ void diversity_loop(){
   }else if(channel == -1){
     channel = 39;
   }
-  
-  frequency = Channel::getFrequencyByIndex(channel);
-  Receiver::setFreq(frequency);
-  
+    
   rssi_a = Receiver::getRssi(0);
   rssi_b = Receiver::getRssi(1);
   
