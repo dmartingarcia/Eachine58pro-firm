@@ -5,19 +5,23 @@
 namespace Led{
 
   void on_a(){
-    digitalWrite(LED_A, LOW);
+    //digitalWrite(LED_A, LOW);
+    GPIOB->regs->BSRR = 1<<9;
   }
 
   void on_b(){
-    digitalWrite(LED_B, LOW);
+    //digitalWrite(LED_B, LOW);
+    GPIOA->regs->BSRR = 1<<2;
   }
 
   void off_a(){
-    digitalWrite(LED_A, HIGH);
+    //digitalWrite(LED_A, HIGH);
+    GPIOB->regs->BRR = 1<<9;
   }
 
   void off_b(){
-    digitalWrite(LED_B, HIGH);
+    //digitalWrite(LED_B, HIGH);
+    GPIOA->regs->BRR = 1<<2;
   }
 
   void init(){

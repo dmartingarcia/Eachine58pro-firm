@@ -40,11 +40,13 @@ namespace Receiver {
   
   void setActiveReceiver(int selector){
     if(selector == 0){
-      digitalWrite(VIDEO_SWITCH, RECEIVER_ID_A);
+      GPIOC->regs->BSRR = 1<<15;
+      //digitalWrite(VIDEO_SWITCH, RECEIVER_ID_A);
       Led::on_a();
       Led::off_b();
     }else{
-      digitalWrite(VIDEO_SWITCH, RECEIVER_ID_B);
+      GPIOC->regs->BRR = 1<<15;
+      //digitalWrite(VIDEO_SWITCH, RECEIVER_ID_B);
       Led::on_b();
       Led::off_a();
     }
@@ -79,8 +81,10 @@ static inline void sendRegister(uint8_t address, uint32_t data) {
   
   // Finished clocking data in
   sendSlaveSelect(HIGH);
-  digitalWrite(PIN_SPI_CLOCK, LOW);
-  digitalWrite(PIN_SPI_DATA, LOW);
+  GPIOA->regs->BRR = 1<<7;
+  GPIOA->regs->BRR = 1<<5;
+  //digitalWrite(PIN_SPI_CLOCK, LOW);
+  //digitalWrite(PIN_SPI_DATA, LOW);
 }
 
 static inline void sendBits(uint32_t bits, uint8_t count) {
@@ -91,20 +95,34 @@ static inline void sendBits(uint32_t bits, uint8_t count) {
 }
 
 static inline void sendBit(uint8_t value) {
-  digitalWrite(PIN_SPI_CLOCK, LOW);
+  GPIOA->regs->BRR = 1<<7;
+  //digitalWrite(PIN_SPI_CLOCK, LOW);
+  delayMicroseconds(1);
+  if(value == HIGH){
+    GPIOA->regs->BSRR = 1<<5;
+  }else{
+    GPIOA->regs->BRR = 1<<5;
+  }
+  //digitalWrite(PIN_SPI_DATA, value);
+  delayMicroseconds(1);
+  GPIOA->regs->BSRR = 1<<7;
+  //digitalWrite(PIN_SPI_CLOCK, HIGH);
   delayMicroseconds(1);
   
-  digitalWrite(PIN_SPI_DATA, value);
-  delayMicroseconds(1);
-  digitalWrite(PIN_SPI_CLOCK, HIGH);
-  delayMicroseconds(1);
-  
-  digitalWrite(PIN_SPI_CLOCK, LOW);
+  GPIOA->regs->BRR = 1<<7;  
+  //digitalWrite(PIN_SPI_CLOCK, LOW);
   delayMicroseconds(1);
 }
 
 static inline void sendSlaveSelect(uint8_t value) {
-  digitalWrite(PIN_SPI_SLAVE_SELECT_A, value);
-  digitalWrite(PIN_SPI_SLAVE_SELECT_B, value);
+  if(value == HIGH){
+    GPIOA->regs->BSRR = 1<<4;
+    GPIOA->regs->BSRR = 1<<5;
+  }else{
+    GPIOA->regs->BRR = 1<<4;
+    GPIOA->regs->BRR = 1<<5;
+  }
+  //digitalWrite(PIN_SPI_SLAVE_SELECT_A, value);
+  //digitalWrite(PIN_SPI_SLAVE_SELECT_B, value);
   delayMicroseconds(1);
 }
