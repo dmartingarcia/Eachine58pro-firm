@@ -2,7 +2,6 @@
 #include "led.h"
 
 #define ADDRESS_SYNTH 0x01
-#define ADDRESS_POWER 0x0A
 #define VIDEO_SWITCH PC15
 #define RECEIVER_ID_A 1
 #define RECEIVER_ID_B 0
@@ -51,17 +50,18 @@ namespace Receiver {
       Led::off_a();
     }
   }
+
+  uint16_t getRawRssi(uint8_t selector){
+    if(selector == RECEIVER_ID_A){
+      return analogRead(RSSI_A); 
+    }else{
+      return analogRead(RSSI_B);
+    }
+  }
   
   uint8_t getRssi(uint8_t selector){
-    uint16_t rssi = 0;
-    if(selector == RECEIVER_ID_A){
-      rssi = analogRead(RSSI_A);
-    }else{
-      rssi = analogRead(RSSI_B);
-    }
-    
     return constrain(
-                     map(rssi,
+                     map(Receiver::getRawRssi(selector),
                          RSSI_MIN_VAL,
                          RSSI_MAX_VAL,
                          0, 
